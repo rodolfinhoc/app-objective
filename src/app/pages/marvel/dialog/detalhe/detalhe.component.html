@@ -1,0 +1,26 @@
+<h1 mat-dialog-title> Detalhes do Personagem: <b>{{name}}</b> </h1>
+<img [src]="imgPath" class="image"/>
+<div mat-dialog-content>
+  <div class="descricao">
+    <p><b>Links:</b> <br> </p>
+    <ul *ngFor="let item of urls">
+      <li><a [href]="item.url" target="_blank">{{item.type}}</a></li>
+    </ul>
+    <p><b>HQs:</b> <br> </p>
+    <ul *ngFor="let item of comics">
+      <li>{{item.name}}</li>
+    </ul>
+    <p><b>Aparições:</b> <br> </p>
+    <ul *ngFor="let item of series">
+      <li>{{item.name}}</li>
+    </ul>
+    <p><b>Eventos:</b> <br> </p>
+    <ul *ngFor="let item of events">
+      <li>{{item.name}}</li>
+    </ul>
+    <p><b>Histórias:</b> <br> </p>
+    <ul *ngFor="let item of stories">
+      <li>{{item.name}}</li>
+    </ul>
+  </div>
+</div>

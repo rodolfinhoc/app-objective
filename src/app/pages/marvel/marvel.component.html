@@ -1,0 +1,52 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+  <mat-toolbar class="toolbar">
+    <img src="../../../assets/images/logo-2.png" />
+    <span class="spacer"></span>
+    <mat-label class="padding labelUser">Rodolfo Correia</mat-label>
+    <mat-icon>account_circle</mat-icon>
+  </mat-toolbar>
+</div>
+<div class="padding">
+  <mat-form-field appearance="outline">
+    <mat-label>Filtrar</mat-label>
+    <input matInput (keyup)="filtrar($event)" #input />
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <!-- IMAGEM -->
+      <ng-container matColumnDef="thumbnail">
+        <th mat-header-cell *matHeaderCellDef>Personagem</th>
+        <td mat-cell *matCellDef="let element">
+          <img [src]="element.thumbnail.path + '.' + element.thumbnail.extension" [attr.width]="'100px'" [attr.height]="'100px'" matTooltip="Mais informações" (click)="showDialog(element.id)" />
+          <div class="center">
+            <b>{{element.name}}</b>
+          </div>
+        </td>
+      </ng-container>
+      <!-- SÉRIES -->
+      <ng-container matColumnDef="series">
+        <th mat-header-cell *matHeaderCellDef>Séries</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-list *ngFor="let item of element.series.items.slice(0, 3)">
+            <mat-list-item>{{item.name}}</mat-list-item>
+          </mat-list>
+        </td>
+      </ng-container>
+      <!-- EVENTOS -->
+      <ng-container matColumnDef="events">
+        <th mat-header-cell *matHeaderCellDef>Eventos</th>
+        <td mat-cell *matCellDef="let element">
+          <mat-list *ngFor="let item of element.events.items.slice(0, 3)">
+            <mat-list-item>{{item.name}}</mat-list-item>
+          </mat-list>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div *ngIf="isLoading" class="spinner">
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="50"> </mat-progress-spinner>
+    </div>
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons aria-label="Selecionar página"> </mat-paginator>
+  </div>
+</div>

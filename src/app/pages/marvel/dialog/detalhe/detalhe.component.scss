@@ -1,0 +1,27 @@
+/* CSS para dispositivos móveis */
+@media screen and (max-width: 767px) {
+  .image {
+    width: 100%;
+    height: auto;
+  }
+
+  .descricao {
+    margin-top: 20px;
+  }
+}
+
+/* CSS para desktops */
+@media screen and (min-width: 768px) {
+  .image {
+    width: 450px;
+    height: 450px;
+    float: left;
+    margin-right: 20px;
+  }
+
+  .descricao {
+    overflow: hidden;
+    /* previne a quebra do layout */
+    margin-top: 0;
+  }
+}
